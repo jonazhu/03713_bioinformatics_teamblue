@@ -11,8 +11,6 @@ def align(pdb_files) -> list:
     dist_mat = [[0.0 for _ in range(len(pdb_files))] for _ in range(len(pdb_files))]
     for i, file in enumerate(pdb_files):
         for j, file2 in enumerate(pdb_files):
-            print(i, j)
-            print(file, file2)
             if i != j:
                 with pymol2.PyMOL() as pm:
                     file1_name = file.split(".")[0]
@@ -21,10 +19,8 @@ def align(pdb_files) -> list:
                     pm.cmd.load(file2, file2_name)
                     out = pm.cmd.super(file1_name, file2_name)
                     dist_mat[i][j] = out[0]
-                    print(out[0])
             else:
                 dist_mat[i][j] = 0.0
-                print(0.0)
     return dist_mat
 
 
