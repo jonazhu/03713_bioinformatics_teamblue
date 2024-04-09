@@ -35,7 +35,7 @@ def IntroduceMutation(sequence, pos, mut):
     return newseq
 
 # %%
-def WriteFasta(s, r, filename = "output.fasta"):
+def WriteFasta(s, r, filename = "homomer.fasta"):
     """
     WriteFasta() takes in a list of sequence strings, a list of record ids, and
     an output filename (optional), writing a fasta file containing each one.
