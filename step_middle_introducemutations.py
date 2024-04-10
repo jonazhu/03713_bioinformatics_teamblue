@@ -42,7 +42,7 @@ def WriteFasta(s, r, filename = "homomer.fasta"):
     """
     items = []
     for i in range(len(s)):
-        record = SeqRecord(Seq(s[i]), id = r[i] + " mutation " + str(i))
+        record = SeqRecord(Seq(s[i]), id = r[i] + "mutation" + str(i))
         items.append(record)
     SeqIO.write(items, filename, "fasta")
 
