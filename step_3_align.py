@@ -1,5 +1,19 @@
 import pymol2
+import argparse
+import os
 
+
+
+# Takes in a directory file name
+args = argparse.ArgumentParser()
+args.add_argument("directory", help="Directory containing pdb files.")
+args = args.parse_args()
+
+directory = args.directory
+pdb_files = []
+for file in os.listdir(directory):
+    if file.endswith(".pdb"):
+        pdb_files.append(file)
 
 # Takes in a list of pdb files and aligns them to each other and returns a distance matrix of the RMSD values.
 
@@ -36,13 +50,12 @@ def write_dist_mat(dist_mat, pdb_files) -> None:
             f.write("\n")
         f.close()
 
-    with open("pdb_files.txt", "w") as f:
+    with open("pdb_files_order.txt", "w") as f:
         for file in pdb_files:
             f.write(file + "\n")
         f.close()
 
-test = ["1a52.pdb", "1err.pdb", "1ett.pdb", "1att.pdb"]
 
-write_dist_mat(align(test), test)
+write_dist_mat(align(pdb_files), pdb_files)
 
     
