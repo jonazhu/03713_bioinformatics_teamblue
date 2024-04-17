@@ -31,7 +31,7 @@ def IntroduceMutation(sequence, pos, mut):
     and the new amino acid to change to. Hypothetically this can work with DNA too.
     Critically, it is a string, not a Sequence object.
     """
-    newseq = sequence[0:pos] + mut + sequence[pos+1:]
+    newseq = sequence[0:pos+1] + mut + sequence[pos+2:]
     return newseq
 
 # %%
@@ -42,7 +42,9 @@ def WriteFasta(s, r, filename = "homomer.fasta"):
     """
     items = []
     for i in range(len(s)):
-        record = SeqRecord(Seq(s[i]), id = r[i] + "mutation" + str(i))
+        record = SeqRecord(Seq(s[i]), id = r[i] + "_mutation_" + str(i))
+        if i == 0:
+            record = SeqRecord(Seq(s[i]), id = r[i] + "_wildtype")
         items.append(record)
     SeqIO.write(items, filename, "fasta")
 
@@ -72,7 +74,9 @@ def ImplementMutations(prot, record, pos, mut):
     ease of writing later.
     """
     prots = []
+    prots.append(prot)
     records = []
+    records.append(record)
     for i in range(len(pos)):
         current_seq = IntroduceMutation(prot, pos[i], mut[i])
         prots.append(current_seq)
