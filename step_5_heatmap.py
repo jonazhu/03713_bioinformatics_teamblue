@@ -15,7 +15,7 @@ if len(sys.argv) != 2:
 
 # Read in input file   
 input_file = sys.argv[1]
-with open(input_file, "r") as f:
+with open("./local_analysis/" + input_file, "r") as f:
     rmsd = f.readlines()
 
 # check if matrix is square
@@ -31,15 +31,21 @@ for line in rmsd:
 rmsd_values = []
 for line in rmsd:
     rmsd_values.append([float(x) for x in line.split()])
+# Read in a list of pdb files from a text file called pdb_files_order.txt
+with open("./local_analysis/pdb_files_order.txt", "r") as f:
+    pdb_files = f.readlines()
+    # Create a list of pdb file names
+    pdb_files = [x.strip() for x in pdb_files]
+xticks = pdb_files
+yticks = pdb_files
 
 # Create a numpy array of the RMSD values
 rmsd_array = np.array(rmsd_values)
 
 # Create a heatmap of the RMSD values
 sns.set(font_scale=1.5)
-sns.heatmap(rmsd_array, cmap="coolwarm", xticklabels=True, yticklabels=True)
+sns.heatmap(rmsd_array, cmap="coolwarm", xticklabels=xticks, yticklabels=yticks)
 plt.title("RMSD Heatmap")
-plt.show()
 plt.savefig("RMSD_heatmap.png")
 plt.close()
 
