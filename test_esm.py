@@ -24,9 +24,7 @@ with torch.no_grad():
     for s in seqs:
         outputs.append(model.infer_pdb(s))
 
-current_dir = sys.argv[2]
-
 for i in range(len(outputs)):
-    currentname = current_dir + "result" + str(i) + ".pdb"
+    currentname = "result" + str(i) + ".pdb"
     with open(currentname, "w") as f:
         f.write(outputs[i])

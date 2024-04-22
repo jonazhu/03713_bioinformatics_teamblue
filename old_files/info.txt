@@ -1,0 +1,9 @@
+all of the files in here are ones that were used for testing
+(not needed to run the final pipeline).
+
+I apologize in advance if you do need these files. Feel free to move
+them back out if that is the case. Just working to get everything
+a bit more cleaned up.
+
+Thx
+- Jonathan
