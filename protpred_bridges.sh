@@ -1,9 +1,15 @@
 #!/bin/bash
 
 echo "Starting ProtPred Pipeline."
+echo "Activating Environment..."
+
+eval "$(conda shell.bash hook)"
+conda activate esmfold
+
+echo "Environment activated."
 echo "Processing proteins..."
 python step1_final.py $1 $2 $3
-echo "Protein ssequences obtained."
+echo "Protein sequences obtained."
 echo "Running ESMFold..."
 mkdir $4
 cd $4
