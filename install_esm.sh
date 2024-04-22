@@ -2,12 +2,12 @@
 
 #shell to install ESMFold based on the guidelines posted by the TA.
 #if this is wrong, tough luck.
-module load AI
-
 echo "Getting ESMFold files..."
 git clone https://github.com/facebookresearch/esm.git
-conda env create -f esmfold/environment.yml
-echo "ESMFold files installed."
+echo "Files retrieved successfully."
+echo "Creating environment..."
+conda env create -f esm/environment.yml
+echo "Environment creation successful."
 conda activate esmfold
 
 echo "Loading modules..."
