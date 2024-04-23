@@ -15,6 +15,9 @@ for file in os.listdir(directory):
     if file.endswith(".pdb"):
         pdb_files.append(file)
 
+# Change into the given directory.
+os.chdir(directory)
+
 # Takes in a list of pdb files and aligns them to each other and returns a distance matrix of the RMSD values.
 
 def align(pdb_files) -> list:
@@ -55,7 +58,10 @@ def write_dist_mat(dist_mat, pdb_files) -> None:
             f.write(file + "\n")
         f.close()
 
+# Change back to the higher directory.
+alignments = align(pdb_files)
+os.chdir("..")
 
-write_dist_mat(align(pdb_files), pdb_files)
+write_dist_mat(alignments, pdb_files)
 
     
