@@ -17,9 +17,13 @@ parser.add_argument("ligand", help="filename of ligand")
 
 args = parser.parse_args()
 
+print("argparser")
 receptor = args.receptor
 ligand = args.ligand
 
+rec_name = receptor.split(".")[0]
+
+print("writing chains")
 # Change the chain of the ligand to B
 lig = pd.parsePDB(ligand)
 lig.setChids("B")
@@ -31,12 +35,12 @@ os.system("cp " + ligand + " lightdock")
 
 
 
-
+receptor = receptor.split("/")[-1]
 
 # Run the docking
 os.chdir("lightdock")
 
-
+print(receptor, ligand)
 subprocess.run(["lightdock3_setup.py", receptor, ligand, "-s 50", "-g 10"])
 
 
@@ -81,5 +85,10 @@ with pymol2.PyMOL() as pm:
     pm.cmd.do("set ambient, 0.45")
     pm.cmd.do("set field_of_view, 40")
     pm.cmd.do("orient")
-    pm.cmd.png("best_pose.png", dpi=300, ray=1)
+    pm.cmd.png(f"best_pose_{rec_name}.png", dpi=300, ray=1)
     pm.cmd.save("pose_sess.pse")
+
+os.system(f"mv best_pose_{rec_name}.png ../local_analysis")
+os.chdir("..")
+# Move lightdock to best directory.
+os.system("rm -rf lightdock")
