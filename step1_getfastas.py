@@ -11,7 +11,7 @@ from io import StringIO
 def get_prots(ids):
     seqs = []
     for i in ids:
-        current_url = "http://www.uniprot.org/uniprot/" + i + ".fasta"
+        current_url = "rest.uniprot.org/uniprotkb/" + i + ".fasta"
 
         response = requests.post(current_url)
         cData=''.join(response.text)
@@ -28,14 +28,18 @@ def write_prots(seqs):
     with open("homomer.fasta", "w") as fw:
         for s in seqs:
             fw.write(s)
-            fw.write("\n")
+            fw.write("\n\n")
 
 #read the ids from a filename
 def read_file(filename):
     with open(filename, "r") as fr:
         ids = []
         for line in fr:
-            ids.append(line)
+            n = len(line)
+            current_id = line
+            if line[n-1] == "\n":
+                current_id = line[:n-1]
+            ids.append(current_id)
 
     return ids
 
