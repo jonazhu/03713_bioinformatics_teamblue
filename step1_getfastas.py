@@ -11,7 +11,7 @@ from io import StringIO
 def get_prots(ids):
     seqs = []
     for i in ids:
-        current_url = "http://www.uniprot.org/uniprot/" + i + ".fasta"
+        current_url = "rest.uniprot.org/uniprotkb/" + i + ".fasta"
 
         response = requests.post(current_url)
         cData=''.join(response.text)
