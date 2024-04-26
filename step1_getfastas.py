@@ -28,7 +28,7 @@ def write_prots(seqs):
     with open("homomer.fasta", "w") as fw:
         for s in seqs:
             fw.write(s)
-            fw.write("\n")
+            fw.write("\n\n")
 
 #read the ids from a filename
 def read_file(filename):
