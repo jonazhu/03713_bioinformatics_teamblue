@@ -35,7 +35,11 @@ def read_file(filename):
     with open(filename, "r") as fr:
         ids = []
         for line in fr:
-            ids.append(line)
+            n = len(line)
+            current_id = line
+            if line[n-1] == "\n":
+                current_id = line[:n-1]
+            ids.append(current_id)
 
     return ids
 
