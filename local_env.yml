@@ -148,12 +148,4 @@ dependencies:
   - xz=5.4.6=h6c40b1e_0
   - zlib=1.2.13=h8a1eda9_5
   - zstd=1.5.5=h829000d_0
-  - pip:
-      - biopython==1.79
-      - cython==3.0.10
-      - freesasa==2.2.1
-      - lightdock==0.9.4
-      - numpy==1.23.5
-      - prody==2.4.1
-      - pyparsing==3.1.1
 prefix: /Users/andrewlutsky/miniconda3/envs/protpredlocal

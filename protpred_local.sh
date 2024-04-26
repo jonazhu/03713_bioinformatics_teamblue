@@ -84,7 +84,7 @@ rm distance_matrix.txt # Clean up the distance matrix file
 # Step 5 - Color structures based on hydrophobicity.
 echo "Performing coloring via hydrophobicity"
 for file in "$protein_structures"/*.pdb; do
-    python3 step_5_props.py $file # Apply hydrophobicity coloring to each file
+    python3 step_6_props.py $file # Apply hydrophobicity coloring to each file
 done
 
 echo "Analysis complete!"
